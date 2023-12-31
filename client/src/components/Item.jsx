@@ -4,7 +4,7 @@ import { useDispatch } from "react-redux";
 import { IconButton, Box, Typography, useTheme, Button } from "@mui/material";
 import AddIcon from "@mui/icons-material/Add";
 import RemoveIcon from "@mui/icons-material/Remove";
-import { shades } from "../theme";
+import { shades, pallete } from "../theme";
 import { addToCart } from "../state";
 import { useNavigate } from "react-router-dom";
 import React from "react";
@@ -15,7 +15,7 @@ const Item = ({ item, width }) => {
 
   const [count, setCount] = useState(1);
   const [isHovered, setIsHovered] = useState(false);
-  const { pallete: {neutral}, } = useTheme();
+  const { palette: {neutral}, } = useTheme();
   const { category, price, name, image } = item.attributes;
   const {
     data: {
@@ -42,7 +42,7 @@ const Item = ({ item, width }) => {
           onClick={() => navigate(`/item/${item.id}`)}
         />
         <Box
-          display={isHovered ? "blocked" : "none"}
+          display={isHovered ? "block" : "none"}
           position="absolute"
           bottom="10%"
           left="0"

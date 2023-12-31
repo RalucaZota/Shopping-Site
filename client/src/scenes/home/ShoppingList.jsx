@@ -44,11 +44,24 @@ const ShoppingList = () => {
                 flexWrap: "wrap"
             }}}>
                 <Tab label="ALL" value="all"/>
-                <Tab label="NEW ARRIVALS" value="all"/>
+                <Tab label="NEW ARRIVALS" value="newArrivals"/>
                 <Tab label="BEST SELLLERS" value="bestSellers"/>
                 <Tab label="TOP RATED" value="topRated"/>
             </Tabs>
-            <Box margin="0 auto" display="grid" gridTemplateColumns="repeat(auto-fill, 300px)"></Box>
+            <Box margin="0 auto" display="grid" gridTemplateColumns="repeat(auto-fill, 300px)" justifyContent="space-around" rowGap="20px" columnGap="1.33%"> 
+            {value === "all" && items.map((item) => (
+                <Item item={item} key={`${item.name}-${item.id}`}></Item>
+            ))}
+            {value === "newArrivals" && newArrivalsItems.map((item) => (
+                <Item item={item} key={`${item.name}-${item.id}`}></Item>
+            ))}
+            {value === "bestSellers" && bestSellersItems.map((item) => (
+                <Item item={item} key={`${item.name}-${item.id}`}></Item>
+            ))}
+            {value === "topRated" && topRatedItems.map((item) => (
+                <Item item={item} key={`${item.name}-${item.id}`}></Item>
+            ))}
+            </Box>
         </Box>
     )
 
