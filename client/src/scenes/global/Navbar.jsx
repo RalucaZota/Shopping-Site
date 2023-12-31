@@ -36,7 +36,7 @@ const Navbar = () => {
         justifyContent="space-between"
         alignItems="center"
       >
-        <Box onClick={()=> {navigate("/")}} sx={{ '&:hover' : { cursor: "pointer"}}} color={shades.secondary[500]}>Jubilian Style</Box>
+        <Box onClick={()=> {navigate("/")}} sx={{ '&:hover' : { cursor: "pointer"}}} color={shades.secondary[500]}>Jubiliant Style</Box>
         <Box display="flex"
         justifyContent="space-between"
         columnGap="20px"
