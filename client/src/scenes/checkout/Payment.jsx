@@ -1,7 +1,7 @@
 // @ts-nocheck
 import { Box, Typography, TextField } from "@mui/material";
 
-const Payment = (values, errors, touched, handleBlur, handleChange) => {
+const Payment = ({values, errors, touched, handleBlur, handleChange}) => {
   return (
     <Box m="30px 0">
       {/* Contact info */}

@@ -8,6 +8,10 @@ import { useState } from "react";
 import { shades } from "../../theme";
 import Shipping from "./Shipping";
 import Payment from "./Payment";
+import {loadStripe} from "@stripe/stripe-js";
+
+
+const stripePromise = loadStripe("pk_test_51OUYK2AMniGio7BHQ3ZqM4cNBShGof6ns91snL1G0JGyec3FTdXABGRYbejM6sqy3ABBtlimoF6YRoKq8dHJH9I5006YbUNQKq");
 
 const initialValues = {
   billingAddress: {
@@ -95,6 +99,7 @@ const Checkout = () => {
     setActiveStep(activeStep + 1);
     //copies the billing address onto shipping address
     if (isFirstStep && values.shippingAddress.isSameAddress) {
+      console.log(values);
       actions.setFieldValue("shippingAddress", {
         ...values.billingAddress,
         isSameAddress: true,
@@ -107,7 +112,29 @@ const Checkout = () => {
     actions.setTouched({});
   };
 
-  async function makePayment(values) {}
+  async function makePayment(values) {
+    const stripe =  await stripePromise;
+    const requestBody = {
+      userName: [ values.firstName, values.lastName].join(" "),
+      email: values.email,
+      products: cart.map(({id, count}) => ({
+        id, count, 
+      }))
+    }
+
+    const response =  await fetch("http://localhost:1337/api/orders", {
+      method: "POST", 
+      headers:{"Content-Type": "application/json"},
+      body: JSON.stringify(requestBody)
+    });
+
+    const session = await response.json();
+    console.log(session)
+    await stripe.redirectToCheckout({
+      sessionId: session.id
+    })
+  }
+
   return (
     <Box width="80%" m="100px auto">
       <Stepper activeStep={activeStep} sx={{ m: "20px 0" }}>
@@ -184,7 +211,6 @@ const Checkout = () => {
                     borderRadius: 0,
                     padding: "15px 40px",
                   }}
-                  onClick={() => setActiveStep(activeStep - 1)}
                 >
                   {isFirstStep ? "Next" : "Place Order"}
                 </Button>
