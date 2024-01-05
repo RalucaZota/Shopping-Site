@@ -69,15 +69,16 @@ const MainCarousel = () => {
                 textAlign="left"
                 backgroundColor="rgb(0, 0, 0, 0.4)"
                 position="absolute"
-                top="46%"
+                top="27%"
+                borderRadius="3%"
                 left={isNonMobile ? "10%" : "0"}
                 right={isNonMobile ? "10%" : "0"}
                 margin={isNonMobile ? "10%" : "0"}
-                maxWidth={isNonMobile ? "10%" : "0"}>
+                maxWidth={isNonMobile ? "17%" : "0"}>
                     <Typography color={shades.secondary[200]}>NEW ITEMS</Typography>
                     <Typography variant="h1">SUMMER SALE</Typography>
                     <Typography fontWeight="bold"
-                    color={shades.secondary[300]}
+                    color={shades.secondary[500]}
                     sx={{textDecoration: "underline"}}
                     >DISCOVER MORE
                     </Typography>

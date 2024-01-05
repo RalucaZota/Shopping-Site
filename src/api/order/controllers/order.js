@@ -32,6 +32,8 @@ module.exports = createCoreController('api::order.order', ({strapi}) => ({
                 }
                 })
             )
+            console.log(lineItems);
+            
             //create stripe session
             const session = await stripe.checkout.sessions.create({
                 payment_method_types: ["card"],
@@ -39,7 +41,8 @@ module.exports = createCoreController('api::order.order', ({strapi}) => ({
                 mode: "payment",
                 success_url: "http://localhost:3006/checkout/success", 
                 cancel_url: "http://localhost:3006",
-                line_items: lineItems})
+                line_items: lineItems
+            })
 
                 //create the item
             await strapi.service("api::order.order").create({
