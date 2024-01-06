@@ -6,11 +6,14 @@ import NavigateBeforeIcon from "@mui/icons-material/NavigateBefore";
 import NavigateNextIcon from "@mui/icons-material/NavigateNext";
 import { shades } from "../../theme";
 
-const importAll = (r) => r.keys().reduce((acc, item) => {
+const importAll = (r) =>
+  r.keys().reduce((acc, item) => {
     acc[item.replace("./", "")] = r(item);
     return acc;
   }, {});
-const heroTextureImports =  importAll(require.context("../../assets", false, /\.(png|jpeg|svg)$/));
+const heroTextureImports = importAll(
+  require.context("../../assets", false, /\.(png|jpeg|svg)$/)
+);
 
 const MainCarousel = () => {
   const isNonMobile = useMediaQuery("(min-width: 600px)");
@@ -33,7 +36,7 @@ const MainCarousel = () => {
             zIndex: "10",
           }}
         >
-            <NavigateBeforeIcon sx={{fontSize: 40}}/>
+          <NavigateBeforeIcon sx={{ fontSize: 40 }} />
         </IconButton>
       )}
       renderArrowNext={(onClickHandler, hasNext, label) => (
@@ -48,43 +51,47 @@ const MainCarousel = () => {
             zIndex: "10",
           }}
         >
-            <NavigateNextIcon sx={{fontSize: 40}}/>
+          <NavigateNextIcon sx={{ fontSize: 40 }} />
         </IconButton>
       )}
-
     >
-        {Object.values(heroTextureImports).map((texture, index) => (
-            <Box key={`carousel-image-${index}`}>
-                <img src={texture}
-                alt={`carousel-${index}`}
-                style={{
-                    width:"100%",
-                    height:"700px",
-                    objectFit: 'cover',
-                    backgroundAttachment: "fixed"
-                }}/>
-                <Box color="white"
-                padding="20px"
-                borderRadius="1px"
-                textAlign="left"
-                backgroundColor="rgb(0, 0, 0, 0.4)"
-                position="absolute"
-                top="27%"
-                borderRadius="3%"
-                left={isNonMobile ? "10%" : "0"}
-                right={isNonMobile ? "10%" : "0"}
-                margin={isNonMobile ? "10%" : "0"}
-                maxWidth={isNonMobile ? "17%" : "0"}>
-                    <Typography color={shades.secondary[200]}>NEW ITEMS</Typography>
-                    <Typography variant="h1">SUMMER SALE</Typography>
-                    <Typography fontWeight="bold"
-                    color={shades.secondary[500]}
-                    sx={{textDecoration: "underline"}}
-                    >DISCOVER MORE
-                    </Typography>
-                </Box>
-            </Box>
-        ))}
+      {Object.values(heroTextureImports).map((texture, index) => (
+        <Box key={`carousel-image-${index}`}>
+          <img
+            src={texture}
+            alt={`carousel-${index}`}
+            style={{
+              width: "100%",
+              height: "700px",
+              objectFit: "cover",
+              backgroundAttachment: "fixed",
+            }}
+          />
+          <Box
+            color="white"
+            padding="20px"
+            borderRadius="1px"
+            textAlign="left"
+            backgroundColor="rgb(0, 0, 0, 0.4)"
+            position="absolute"
+            top="27%"
+            borderRadius="3%"
+            left={isNonMobile ? "10%" : "0"}
+            right={isNonMobile ? "10%" : "0"}
+            margin={isNonMobile ? "10%" : "0"}
+            width="250px"
+          >
+            <Typography color={shades.secondary[200]}>NEW ITEMS</Typography>
+            <Typography variant={isNonMobile ? "h1" : "h2"}>
+              SUMMER SALE
+            </Typography>
+            <Typography>
+              <a href="#test" sx={{ '&:hover' : { cursor: "pointer"}}} fontWeight="bold"
+              color={shades.secondary[500]}>DISCOVER MORE</a>
+            </Typography>
+          </Box>
+        </Box>
+      ))}
     </Carousel>
   );
 };

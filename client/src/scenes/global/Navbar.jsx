@@ -11,6 +11,7 @@ import {
 import { useNavigate } from "react-router-dom";
 import { shades } from "../../theme";
 import { setIsCartOpen } from "../../state";
+import logo from '../global/logo.png'
 
 const Navbar = () => {
   const navigate = useNavigate()
@@ -36,7 +37,9 @@ const Navbar = () => {
         justifyContent="space-between"
         alignItems="center"
       >
-        <Box onClick={()=> {navigate("/")}} sx={{ '&:hover' : { cursor: "pointer"}}} color={shades.secondary[500]}>Jubiliant Style</Box>
+        <Box onClick={()=> {navigate("/")}} sx={{ '&:hover' : { cursor: "pointer"}}} color={shades.secondary[500]}>
+      <img src={logo} alt="logo" width="140px" height="60px"/>
+    </Box>
         <Box display="flex"
         justifyContent="space-between"
         columnGap="20px"
