@@ -31,8 +31,8 @@ const ShoppingList = () => {
     const bestSellersItems =  items.filter((item) => item.attributes.category === "bestSellers");
 
     return (
-        <Box width="80%" margin="80px auto" id="test">
-            <Typography variant='h3' textAlign="center">
+        <Box width="80%" margin="40px auto" id="scrolledSection">
+            <Typography variant='h2' textAlign="center" fontFamily="Roboto">
                 Our Featured <b>Products</b>
             </Typography>
             <Tabs textColor='primary'

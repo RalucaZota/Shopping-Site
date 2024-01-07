@@ -27,12 +27,19 @@ const Item = ({ item, width }) => {
     },
   } = image;
 
+  const zoomedStyle = {
+    transform: isHovered ? 'scale(1.2)' : 'scale(1)',
+    transition: 'transform 0.5s ease'
+  };
   return (
     <Box width={width}>
       <Box
+        borderRadius='14%'
+        overflow='hidden'
         position="relative"
         onMouseOver={() => setIsHovered(true)}
         onMouseOut={() => setIsHovered(false)}
+        
       >
         <img
           alt={item.name}
@@ -40,6 +47,7 @@ const Item = ({ item, width }) => {
           height="400px"
           src={`http://localhost:1337${url}`}
           onClick={() => navigate(`/item/${item.id}`)}
+          style={zoomedStyle}
         />
         <Box
           display={isHovered ? "block" : "none"}
@@ -77,14 +85,14 @@ const Item = ({ item, width }) => {
           </Box>
         </Box>
       </Box>
-      <Box mt="3px">
+      <Box mt="3px"  display="flex" flexDirection="column" alignItems="center">
         <Typography variant="subtitle2" color={neutral.dark}>
           {category
             .replace(/([A-Z])/g, " $1")
             .replace(/^./, (str) => str.toUpperCase())}
         </Typography>
-        <Typography>{name}</Typography>
-        <Typography fontWeight="bold">{price}</Typography>
+        <Typography fontWeight="bolder" fontSize="16px">{name}</Typography>
+        <Typography fontWeight="bold">${price}</Typography>
       </Box>
     </Box>
   );

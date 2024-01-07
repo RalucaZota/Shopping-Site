@@ -1,5 +1,12 @@
 // @ts-nocheck
-import { Box, Typography, IconButton, useMediaQuery } from "@mui/material";
+import {
+  Box,
+  Typography,
+  IconButton,
+  useMediaQuery,
+  Button,
+} from "@mui/material";
+import { Link } from "react-scroll";
 import { Carousel } from "react-responsive-carousel";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import NavigateBeforeIcon from "@mui/icons-material/NavigateBefore";
@@ -24,6 +31,7 @@ const MainCarousel = () => {
       showThumbs={false}
       showIndicators={false}
       showStatus={false}
+      autoPlay={true}
       renderArrowPrev={(onClickHandler, hasPrev, label) => (
         <IconButton
           onClick={onClickHandler}
@@ -70,24 +78,42 @@ const MainCarousel = () => {
           <Box
             color="white"
             padding="20px"
-            borderRadius="1px"
             textAlign="left"
             backgroundColor="rgb(0, 0, 0, 0.4)"
             position="absolute"
-            top="27%"
+            top={isNonMobile ? "5%" : "40%"}
             borderRadius="3%"
-            left={isNonMobile ? "10%" : "0"}
+            left={isNonMobile ? "0%" : "10%"}
             right={isNonMobile ? "10%" : "0"}
             margin={isNonMobile ? "10%" : "0"}
-            width="250px"
+            width="325px"
           >
             <Typography color={shades.secondary[200]}>NEW ITEMS</Typography>
-            <Typography variant={isNonMobile ? "h1" : "h2"}>
-              SUMMER SALE
+            <Typography variant={isNonMobile ? "h1" : "h2"} sx={{ "&:hover": { cursor: "pointer" } }} fontSize={isNonMobile ? "65px" : "30px"}>
+            <Link
+                to="scrolledSection"
+                spy={true}
+                smooth={true}
+                offset={-100}
+                duration={500} 
+              >
+                SUMMER SALE
+              </Link>
             </Typography>
-            <Typography>
-              <a href="#test" sx={{ '&:hover' : { cursor: "pointer"}}} fontWeight="bold"
-              color={shades.secondary[500]}>DISCOVER MORE</a>
+            <Typography
+              sx={{ "&:hover": { cursor: "pointer" } }}
+              fontWeight="bold"
+              color={shades.secondary[500]}
+            >
+              <Link
+                to="scrolledSection"
+                spy={true}
+                smooth={true}
+                offset={-100}
+                duration={500}
+              >
+                DISCOVER MORE
+              </Link>
             </Typography>
           </Box>
         </Box>
