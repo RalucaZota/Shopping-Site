@@ -73,15 +73,6 @@ const Item = ({ item, width }) => {
                 <AddIcon />
               </IconButton>
             </Box>
-            {/* Button */}
-            <Button
-              onClick={() => {
-                dispatch(addToCart({ item: { ...item, count } }));
-              }}
-              sx={{ backgroundColor: shades[300], color: "white" }}
-            >
-              Add to cart
-            </Button>
           </Box>
         </Box>
       </Box>
@@ -93,6 +84,15 @@ const Item = ({ item, width }) => {
         </Typography>
         <Typography fontWeight="bolder" fontSize="16px">{name}</Typography>
         <Typography fontWeight="bold">${price}</Typography>
+          {/* Button */}
+          <Button
+              onClick={() => {
+                dispatch(addToCart({ item: { ...item, count } }));
+              }}
+              sx={{ backgroundColor: shades[300], color: "black", fontWeight:"700" }} 
+            >
+              Add to cart
+            </Button>
       </Box>
     </Box>
   );
