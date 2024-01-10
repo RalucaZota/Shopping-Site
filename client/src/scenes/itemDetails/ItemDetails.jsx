@@ -54,17 +54,17 @@ const ItemDetails = () => {
     <Box width="80%" m="80px auto">
       <Box display="flex" flexWrap="wrap" columnGap="15px" maxWidth="80%">
         {/* Images */}
-        <Box flex="1 1 40%" mb="40px">
+        <Box mb="40px">
           <img
             alt={item?.name}
             width="100%"
-            height="100%"
+            maxHeight="700px"
             src={`http://localhost:1337${item?.attributes?.image?.data?.attributes?.formats?.medium?.url}`}
             style={{ objectFit: "contain" }}
           />
         </Box>
         {/* Actions */}
-        <Box flex="1 1 50%" mb="40px">
+        <Box flex="1 1 50%" mb="40px" marginRight="120px" maxWidth="400px">
           <Box display="flex" justifyContent="space-between">
             <Box>Home/Item</Box>
             <Box>Prev/Next</Box>
@@ -86,12 +86,13 @@ const ItemDetails = () => {
               border={`1.5px solid ${shades.neutral[300]}`}
               mr="20px"
               p="2px 5px"
+              borderRadius="5px"
             >
               <IconButton onClick={() => setCount(Math.max(count - 1, 1))}>
                 <RemoveIcon />
               </IconButton>
               <Typography sx={{ p: "0 5px" }}>{count}</Typography>
-              <IconButton onClick={() => setCount(count + 1)}>
+              <IconButton onClick={() => setCount(count + 1)} >
                 <AddIcon />
               </IconButton>
             </Box>
@@ -102,6 +103,7 @@ const ItemDetails = () => {
                 borderRadius: 0,
                 minWidth: "150px",
                 padding: "10px 40px",
+                borderRadius: "5px"
               }}
               onClick={() => dispatch(addToCart({ item: { ...item, count } }))}
             >
@@ -118,16 +120,17 @@ const ItemDetails = () => {
             <Typography>Categories: {item?.attributes?.category}</Typography>
           </Box>
         </Box>
-        <Box display="flex" flexDirection="column">
+        <Box display="flex" flexDirection="column" sx={{ border: "1px solid black", padding: "5px", height: "115px", marginBottom: "40px"}} borderRadius="5px" alignSelf="flex-end">
         {detailsIcons.map((item, index) => (
-        <Box m="75px 0 25px 0" >
-            <Box marginRight="5px" marginTop="2px" key={index}>
+        <Box key={index} display="flex" flexDirection="row" marginTop="10px"  borderBottom={index === 2 ? "none" : "1px solid black"}>
+            <Box marginRight="5px" marginTop="-2px">
               <img
                 src={item.img}
                 width="20px"
               />
             </Box>
-            {item.text}
+            <Box>{item.text}</Box>
+            
         </Box>
             ))}
       </Box>
