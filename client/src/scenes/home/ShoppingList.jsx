@@ -31,12 +31,6 @@ const ShoppingList = () => {
         switch (value) {
           case 'all':
             return items.slice(startIndex, endIndex);
-          case 'newArrivals':
-            return newArrivalsItems.slice(startIndex, endIndex);
-          case 'bestSellers':
-            return bestSellersItems.slice(startIndex, endIndex);
-          case 'topRated':
-            return topRatedItems.slice(startIndex, endIndex);
           default:
             return [];
         }
@@ -90,7 +84,7 @@ const ShoppingList = () => {
                 <Item item={item} key={`${item.name}-${item.id}`}></Item>
             ))}
             </Box>
-            <Box display="flex" justifyContent="center" marginTop="20px">
+            {value === 'all' ? <Box display="flex" justifyContent="center" marginTop="20px">
         <Button variant="contained" color="primary" onClick={handlePrevPage} disabled={currentPage === 1}>
           Prev
         </Button>
@@ -100,7 +94,7 @@ const ShoppingList = () => {
         <Button variant="contained" color="primary" onClick={handleNextPage} disabled={currentPage === totalPageCount}>
           Next
         </Button>
-      </Box>
+      </Box> : ''}
         </Box>
     )
 
