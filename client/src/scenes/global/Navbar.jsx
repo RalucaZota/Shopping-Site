@@ -61,7 +61,7 @@ const Navbar = () => {
             minWidth: "13px"
           }}}>
 
-          <IconButton sx={{color: "black"}} onClick={() => dispatch(setIsCartOpen({}))}>
+          <IconButton sx={{color: "black"}} onClick={() => dispatch(setIsCartOpen({}))} className="modal-opener">
             <ShoppingBagOutlined/>
           </IconButton>
           </Badge>

@@ -51,8 +51,8 @@ const ItemDetails = () => {
     getItems();
   }, [itemId]);
   return (
-    <Box width="80%" m="80px auto">
-      <Box display="flex" flexWrap="wrap" columnGap="15px" maxWidth="80%">
+    <Box width="80%" m="80px" >
+      <Box display="flex" flexWrap="wrap" columnGap="40px" maxWidth="80%" justifyContent="center" margin="0 auto">
         {/* Images */}
         <Box mb="40px">
           <img
@@ -64,7 +64,7 @@ const ItemDetails = () => {
           />
         </Box>
         {/* Actions */}
-        <Box flex="1 1 50%" mb="40px" marginRight="120px" maxWidth="400px">
+        <Box flex="1 1 50%" mb="40px" maxWidth="400px">
           <Box display="flex" justifyContent="space-between">
             <Box>Home/Item</Box>
             <Box>Prev/Next</Box>

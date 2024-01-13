@@ -19,7 +19,7 @@ const importAll = (r) =>
     return acc;
   }, {});
 const heroTextureImports = importAll(
-  require.context("../../assets", false, /\.(png|jpeg|svg)$/)
+  require.context("../../assets", false, /\.(png|jpeg|svg|jpg)$/)
 );
 
 const MainCarousel = () => {

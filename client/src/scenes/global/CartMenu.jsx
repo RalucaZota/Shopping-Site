@@ -1,5 +1,4 @@
 // @ts-nocheck
-import {useRef, useEffect} from 'react';
 import { Box, Button, Divider, IconButton, Typography } from "@mui/material";
 import { useSelector, useDispatch } from "react-redux";
 import CloseIcon from "@mui/icons-material/Close";
@@ -27,22 +26,10 @@ const CartMenu = () => {
   const dispatch = useDispatch();
   const cart = useSelector((state) => state.cart.cart);
   const isCartOpen = useSelector((state) => state.cart.isCartOpen);
-  const overlayRef = useRef(null);
+
   const totalPrice = cart.reduce((total, item) => {
     return total + item.count * item.attributes.price;
   }, 0);
-
-  useEffect(() => {
-    const handleClickOutside = (event) => {
-      if (overlayRef.current && !overlayRef.current.contains(event.target)) {
-        dispatch(setIsCartOpen({}));
-      }
-    };
-    document.addEventListener("click", handleClickOutside);
-    return () => {
-      document.removeEventListener("click", handleClickOutside);
-    };
-  }, [dispatch]);
 
   return (
     <Box //overlay
@@ -55,7 +42,6 @@ const CartMenu = () => {
       left="0"
       top="0"
       overflow="auto"
-      ref={overlayRef}
     >
       {/* {modal} */}
       <Box
@@ -149,7 +135,7 @@ const CartMenu = () => {
               sx={{
                 backgroundColor: shades.primary[400],
                 color: "white",
-                borderRadius: 1,
+                borderRadius: 0,
                 minWidth: "100%",
                 padding: "20px 40px",
                 m: "20px 0",
