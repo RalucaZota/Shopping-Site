@@ -34,7 +34,6 @@ const Item = ({ item, width }) => {
   return (
     <Box width={width}>
       <Box
-        borderRadius='14%'
         overflow='hidden'
         position="relative"
         onMouseOver={() => setIsHovered(true)}

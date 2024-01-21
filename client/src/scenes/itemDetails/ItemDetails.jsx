@@ -3,7 +3,7 @@ import React from "react";
 import { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { IconButton, Box, Typography, Tabs, Tab, Button } from "@mui/material";
-// import { FavoriteBorderOutlinedIcon } from "@mui/icons-material/FavoriteBorderOutlined";
+import { useMediaQuery } from "@mui/material";
 import AddIcon from "@mui/icons-material/Add";
 import RemoveIcon from "@mui/icons-material/Remove";
 import { shades } from "../../theme";
@@ -21,6 +21,8 @@ const ItemDetails = () => {
   const [count, setCount] = useState(1);
   const [item, setItem] = useState(null);
   const [items, setItems] = useState([]);
+
+  const isNonMobile = useMediaQuery("(min-width: 600px)");
 
   const detailsIcons = [{text: 'Free Shipping', img: Payment}, {text: '100 days return policy', img: Shipping}, {text: "Reimbursment payment", img: Refund}]
   const handleChange = (event, newValue) => {
@@ -51,7 +53,7 @@ const ItemDetails = () => {
     getItems();
   }, [itemId]);
   return (
-    <Box width="80%" m="80px" >
+    <Box width="80%" m="80px" marginLeft={isNonMobile ? "80px" : "40px"}>
       <Box display="flex" flexWrap="wrap" columnGap="40px" maxWidth="80%" justifyContent="center" margin="0 auto">
         {/* Images */}
         <Box mb="40px">
